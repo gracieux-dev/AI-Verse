@@ -8,7 +8,7 @@ st.set_page_config(page_title="LANGUATOUR AI", page_icon="", layout="wide")
 
 st.markdown("""
             <style>
-                
+
             </style>
 
             """,
@@ -22,7 +22,7 @@ with ui.card(key="image"):
         with stylable_container(
                 key="card2",
                 css_styles="""
-
+                    
                 """    
             ):
             with ui.card(key="card2"):
