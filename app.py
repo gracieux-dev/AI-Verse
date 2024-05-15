@@ -1,55 +1,28 @@
 # streamlit app.py
 import streamlit as st
+from learn import learn_page
+from discovery import discovery_page
 import streamlit_shadcn_ui as ui
 from streamlit_extras.stylable_container import stylable_container
 from streamlit_option_menu import option_menu
 
+from translation import translation_page
+
 st.set_page_config(page_title="LANGUATOUR AI", page_icon="", layout="wide")
 
-st.markdown("""
-            <style>
-
-            </style>
-
-            """,
-            unsafe_allow_html=True)
+def inject_custom_css():
+    with open('style.css') as f:
+        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 
+inject_custom_css()
 value = ui.tabs(options=['DISCOVERY', 'TRANSLATION', 'LEARN'], default_value='DISCOVERY', key="kanaries")
 
 with ui.card(key="image"):
     if value == "DISCOVERY":
-        with stylable_container(
-                key="card2",
-                css_styles="""
-                    
-                """    
-            ):
-            with ui.card(key="card2"):
-                
-                ui.element("button", key="card2_btn", text="Nest Submmit", variant="outline")
-        with ui.card(key="card"):
-            ui.element("button", key="card2_btn", text="Nest Submmit", variant="outline")
-        with ui.card(key="card"):
-            ui.element("button", key="card2_btn", text="Nest Submmit", variant="outline")
-        with ui.card(key="card"):
-            ui.element("button", key="card2_btn", text="Nest Submmit", variant="outline")
+       discovery_page()
+    elif value == "TRANSLATION":
+        translation_page() 
     elif value == "LEARN":
-        with ui.card(key="learn"):
-            col1, col2 = st.columns([1, 2], gap="medium")
-
-            with col1:
-                st.image('icon.png', width=50)
-
-            with col2:
-                with stylable_container(
-                    key="text",
-                    css_styles="""
-
-                    """
-                ):
-                    st.markdown("BEGINNERS")
-                    st.markdown("cotent for beginner")
-
-                
+        learn_page()
 
